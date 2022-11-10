@@ -42,6 +42,4 @@ RSpec.describe "calculate_reading_time method" do
       expect(result).to eq 25
     end
   end
-
-
 end
