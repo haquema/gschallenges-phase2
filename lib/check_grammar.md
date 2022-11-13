@@ -20,18 +20,18 @@ result = grammar_checker(text)
 
 # * text is the string to be checked for punctuation
 # * verify_capital and verify_end_punctuation are methods to check the relative grammatical rule.
-# * grammar_checker will combine both methods above and return result which is a string informing about the grammatical state of the text
+# * grammar_checker will combine both methods above and return result which is a boolean
 
 
 ## 3. Create Examples as Tests
 
 # 1
 grammar_checker("")
-# => "Everything ok"
+# => true
 
 # 2
 grammar_checker("Hello, My name is Aziz.")
-# => "Everything ok"
+# => true
 
 # 3
 grammar_checker("hello, My name is Aziz.")
