@@ -24,6 +24,12 @@ class DiaryEntry
                         # user can read per minute
     # Returns an integer representing an estimate of the reading time in minutes
     # for the contents at the given wpm.
+    word_count = @contents.split.length
+      if word_count != 0 
+        time_to_read = (word_count.to_f/ wpm).ceil
+      else
+        0
+    end
   end
 
   def reading_chunk(wpm, minutes) # `wpm` is an integer representing the number

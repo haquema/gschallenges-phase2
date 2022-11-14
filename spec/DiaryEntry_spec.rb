@@ -11,5 +11,10 @@ RSpec.describe DiaryEntry do
     num_words = entry.count_words
     expect(num_words).to eq 2
   end
+  it "returns the estimated reading time for the contents when given the reading speed" do
+    entry = DiaryEntry.new("Monday", "word " * 400)
+    result = entry.reading_time(200)
+    expect(result).to eq 2
+  end
 
 end
