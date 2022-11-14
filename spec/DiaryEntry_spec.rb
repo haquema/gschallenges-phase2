@@ -16,5 +16,12 @@ RSpec.describe DiaryEntry do
     result = entry.reading_time(200)
     expect(result).to eq 2
   end
+  context "given a reading rate and set number of minutes" do
+    it "returns the chunk of contents the user can read" do
+      entry = DiaryEntry.new("Monday", "one two three ")
+      result = entry.reading_chunk(2, 1)
+      expect(result).to eq "one two"
+    end
+  end
 
 end
