@@ -35,6 +35,23 @@ RSpec.describe DiaryEntry do
       result = entry.reading_chunk(2, 1)
       expect(result).to eq "five"
     end
+    it "returns the next chunk of text if text is still longer than the user can read" do
+      entry = DiaryEntry.new("Monday", "one two three four five")
+      entry.reading_chunk(2, 1)
+      entry.reading_chunk(2, 1)
+      entry.reading_chunk(2, 1)
+      result = entry.reading_chunk(2, 1)
+      expect(result).to eq "one two"
+    end
+    it "returns the next chunk of text if text is still longer than the user can read" do
+      entry = DiaryEntry.new("Monday", "one two three four five")
+      entry.reading_chunk(2, 1)
+      entry.reading_chunk(2, 1)
+      entry.reading_chunk(2, 1)
+      entry.reading_chunk(2, 1)
+      result = entry.reading_chunk(2, 1)
+      expect(result).to eq "three four"
+    end
   end
 
 end
