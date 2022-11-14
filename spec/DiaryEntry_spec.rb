@@ -16,11 +16,24 @@ RSpec.describe DiaryEntry do
     result = entry.reading_time(200)
     expect(result).to eq 2
   end
-  context "given a reading rate and set number of minutes" do
+  context "given a reading rate and set number of minutes, where the text is longer than the user can read" do
     it "returns the chunk of contents the user can read" do
-      entry = DiaryEntry.new("Monday", "one two three ")
+      entry = DiaryEntry.new("Monday", "one two three")
       result = entry.reading_chunk(2, 1)
       expect(result).to eq "one two"
+    end
+    it "returns the next chunk of text if text is still longer than the user can read" do
+      entry = DiaryEntry.new("Monday", "one two three four five")
+      entry.reading_chunk(2, 1)
+      result = entry.reading_chunk(2, 1)
+      expect(result).to eq "three four"
+    end
+    it "returns the next chunk of text if text is still longer than the user can read" do
+      entry = DiaryEntry.new("Monday", "one two three four five")
+      entry.reading_chunk(2, 1)
+      entry.reading_chunk(2, 1)
+      result = entry.reading_chunk(2, 1)
+      expect(result).to eq "five"
     end
   end
 
