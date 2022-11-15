@@ -80,5 +80,20 @@ RSpec.describe GrammarStats do
         expect { stats.percentage_good }.to raise_error "You need to run check at least once first"
       end
     end
+    context "calling percentage_good after checking one piece of text" do
+      it "returns 100 because the text was grammatically correct" do
+        stats = GrammarStats.new
+        stats.check("Hello, My name is Aziz?")
+        expect(stats.percentage_good).to eq 100
+      end
+      it "returns 0 because the text was grammatically incorrect" do
+        stats = GrammarStats.new
+        stats.check("Hello, My name is Aziz")
+        stats.check("Hello, My name is Aziz")
+        stats.check("Hello, My name is Aziz")
+        stats.check("Hello, My name is Aziz?")
+        expect(stats.percentage_good).to eq 25
+      end
+    end
   end 
 end

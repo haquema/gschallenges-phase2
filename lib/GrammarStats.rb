@@ -1,23 +1,30 @@
 class GrammarStats
   def initialize
     @check_count = 0
-    # ...
+    @pass_count = 0
   end
     
-  # text is a string
-  # Returns true or false depending on whether the text begins with a capital
-  # letter and ends with a sentence-ending punctuation mark.
   def check(text)
     fail "You passed an empty string" if text == ""
     fail "The argument for check method must be a string!" unless text.is_a? String
     @check_count += 1
-    return verify_capitalisation(text) && verify_end_punctuatin(text)
+    # p "check count is currently at #{@check_count}"
+    if verify_capitalisation(text) && verify_end_punctuatin(text)
+      @pass_count += 1
+      # p "pass count is currently at #{@pass_count}"
+      true
+    else
+      false
+    end
   end
 
   # Returns as an integer the percentage of texts checked so far that passed
   # the check defined in the `check` method. The number 55 represents 55%.
   def percentage_good
     fail "You need to run check at least once first" if @check_count == 0
+    p @pass_count
+    p @check_count
+    ((@pass_count/@check_count) * 100)
   end
 
   private 
@@ -32,4 +39,14 @@ class GrammarStats
     return punctuation.include? str[-1]
   end
 
+  private 
+
 end
+
+stats = GrammarStats.new
+stats.check("Hello, My name is Aziz")
+stats.check("Hello, My name is Aziz")
+stats.check("Hello, My name is Aziz")
+stats.check("Hello, My name is Aziz?")
+p "---------------"
+stats.percentage_good
