@@ -27,4 +27,17 @@ RSpec.describe Tasks do
     end
   end
 
+  context "attempts to add a non string task" do
+    it "fails" do
+      todo = Tasks.new
+      expect { todo.add_task(2) }.to raise_error "Task must be a string in order to be added"
+    end
+  end
+
+  context "attempts to display tasks when no tasks in list" do
+    it "fails" do
+      todo = Tasks.new
+      expect { todo.display_tasks }.to raise_error "No tasks to display"
+    end
+  end
 end

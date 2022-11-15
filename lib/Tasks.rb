@@ -5,11 +5,13 @@ class Tasks
   end
 
   def add_task(task)
-    fail "Empty string cannot be added" if task.empty?
+    fail "Empty string cannot be added" if task == ""
+    fail "Task must be a string in order to be added" unless task.is_a? String
     @tasklist << task
   end
 
   def display_tasks
+    fail "No tasks to display" if @tasklist.empty?
     @tasklist.join(", ")
   end
 end
