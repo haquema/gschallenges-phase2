@@ -14,4 +14,10 @@ class Tasks
     fail "No tasks to display" if @tasklist.empty?
     @tasklist.join(", ")
   end
+
+  def complete(task)
+    fail "Task not found in list" unless @tasklist.include? task
+    @tasklist.delete(task)
+  end
+
 end

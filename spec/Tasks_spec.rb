@@ -40,4 +40,21 @@ RSpec.describe Tasks do
       expect { todo.display_tasks }.to raise_error "No tasks to display"
     end
   end
+
+  context "marks a task as completed" do
+    it "removes the task from the list" do
+      todo = Tasks.new
+      todo.add_task("tidy bed")
+      todo.add_task("fold laundry")
+      todo.complete("tidy bed")
+      expect(todo.display_tasks).to eq "fold laundry"
+    end
+  end
+
+  context "attempts to mark a task that is not in the list as complete" do
+    it "fails" do
+      todo = Tasks.new
+      expect { todo.complete("tidy bed") }.to raise_error "Task not found in list"
+    end
+  end
 end
