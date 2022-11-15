@@ -26,4 +26,18 @@ RSpec.describe MusicTracks do
     end
   end
 
+  context "When attempting to add a non string to the list" do
+    it "fails" do
+      playlist = MusicTracks.new
+      expect { playlist.add_track(23) }.to raise_error "trackname must be a string"
+    end
+  end
+
+  context "When attempting to display tracks but no tracks have been added" do
+    it "fails" do
+      playlist = MusicTracks.new
+      expect { playlist.display_tracks }.to raise_error "No tracks to display"
+    end
+  end
+
 end
