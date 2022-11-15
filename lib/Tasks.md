@@ -26,7 +26,7 @@ class Tasks
   end
 
   def display_tasks
-  # returns a string with each task on a new line
+  # returns a string with each task (separated with commas)
   end
 
   def complete(completed_task) # completed_task is a string containing the task that has been completed
@@ -51,7 +51,7 @@ todo.display_tasks # => "tidy bed"
 todo = Tasks.new
 todo.add_task("tidy bed")
 todo.add_task("fold laundry")
-todo.display_tasks # => "tidy bed" \n "fold laundry"
+todo.display_tasks # =>"tidy bed, fold laundry"
 
 # 3
 todo = Tasks.new
